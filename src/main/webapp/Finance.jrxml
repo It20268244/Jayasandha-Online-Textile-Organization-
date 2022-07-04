@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Finance" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ed47d36-b914-40a4-a0d3-caecf5e1e175">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="My Driver - Mysql"/>
+	<subDataset name="Dataset1" uuid="547fd0e4-8855-41a2-b29c-ff45c2d4a3e9">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="My Driver - Mysql"/>
+		<queryString language="SQL">
+			<![CDATA[select sum(amount)
+from payment]]>
+		</queryString>
+		<field name="sum(amount)" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.name" value="sum(amount)"/>
+			<property name="com.jaspersoft.studio.field.label" value="sum(amount)"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select sum(total)
+from purchase]]>
+	</queryString>
+	<field name="sum(total)" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="sum(total)"/>
+		<property name="com.jaspersoft.studio.field.label" value="sum(total)"/>
+	</field>
+	<variable name="Variable_1" class="java.lang.Float" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="460" y="50" width="100" height="30" uuid="a93f11fd-53bd-477d-b371-1984861d3dc0"/>
+				<textFieldExpression><![CDATA[$F{sum(total)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="bd421846-0e37-4eda-a189-1201cea6f3e1"/>
+				<text><![CDATA[sum(total)]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="460" y="10" width="100" height="30" uuid="2132a5dc-10ca-464a-9cd4-fe6bca9a9221"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="93442c60-5c8a-499d-ab0b-09a6668dfe9d">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="30" uuid="eadee265-3f80-47fc-bfc5-42e2061b4a4b"/>
+							<textFieldExpression><![CDATA[$F{sum(amount)}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="99" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
